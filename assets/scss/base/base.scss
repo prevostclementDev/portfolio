@@ -1,0 +1,70 @@
+@import "reset";
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+// #####
+// MIXIN
+// #####
+
+@mixin flex($j : center,$a : center,$d : row,$w : nowrap,$gr : 0,$gc : 0) {
+  display: flex;
+  justify-content: $j;
+  align-items: $a;
+  flex-direction: $d;
+  flex-wrap: $w;
+  row-gap: $gr;
+  column-gap: $gc;
+}
+@mixin lexend($fs : 16px,$fw : 400,$lh : normal, $color : $c-black){
+  font-family: 'Lexend', sans-serif;
+  font-size: $fs;
+  font-weight: $fw;
+  line-height: $lh;
+  color: $color;
+}
+@mixin btn($bg : $c-black,$color : $c-white,$fs : 20px,$fw : 500,$lh : normal){
+  outline: none;
+  text-decoration: none;
+  background: $bg;
+  border: none;
+  width: 200px;
+  height: 70px;
+  cursor: pointer;
+  display: block;
+  @include lexend($fs,$fw,$lh,$color);
+  @include flex();
+}
+
+@mixin p($color : $c-black) {
+  @include lexend(clamp(16px,1.4vw,20px),300,40px,$color);
+  @include flex(space-between,flex-start,column);
+  @media screen and (max-width: 1380px) {
+    line-height: 200%;
+    @media screen and (max-width: 1030px) {
+      line-height: 170%;
+      @media screen and (max-width: 994px) {
+        line-height: 150%;
+      }
+    }
+  }
+  strong {
+    font-weight: 600;
+  }
+  span.fullSize {
+    font-size: clamp(20px,2vw,32px);
+    font-weight: 400;
+  }
+  & > span {
+    display: inline-block;
+  }
+}
+
+// ######
+//  VAR
+// ######
+
+$c-black : #1C1919;
+$c-white : #EFEBEB;
+$c-light-white : rgba(250, 250, 250, 0.50);
+
+$c-gradient-bubble : linear-gradient(180deg, rgba(28, 25, 25, 0.13) 0%, rgba(217, 217, 217, 0.00) 100%);
+$c-gradient-image : linear-gradient(180deg, rgba(28, 25, 25, 0.15) 0%, rgba(28, 25, 25, 0.45) 42.37%, rgba(28, 25, 25, 0.45) 75.42%, rgba(28, 25, 25, 0.00) 100%), rgba(28, 25, 25, 0.00)  0%;

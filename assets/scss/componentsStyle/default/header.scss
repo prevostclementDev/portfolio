@@ -1,0 +1,19 @@
+header {
+  @include flex(space-between,center);
+  padding: 20px 50px;
+  height: 115px;
+  position: relative;
+  z-index: 1;
+  .left {
+    @include lexend(16px,400,normal);
+    height: 0;
+    overflow: hidden;
+  }
+  .right {
+    height: 0;
+    overflow: hidden;
+    button {
+      @include btn();
+    }
+  }
+}

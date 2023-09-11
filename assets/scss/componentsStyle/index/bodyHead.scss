@@ -1,0 +1,60 @@
+#bodyHead {
+
+  height: calc(100vh - 115px);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: calc(100vh - 115px - 10vh) 10vh;
+
+  .mainNameSection {
+    @include flex();
+    h1 {
+      @include lexend();
+      @include flex(center,flex-start,column);
+      .fname {
+        font-size: 36px;
+        font-weight: 400;
+        text-transform: uppercase;
+        transform: translateX(-50%);
+      }
+      .nname {
+        font-size: 96px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+      .jobs {
+        @include flex(flex-end,flex-end,column);
+        width: 100%;
+        & > span {
+          font-size: 24px;
+          font-weight: 300;
+          transform: translateX(50%);
+          margin: 3px 0;
+        }
+      }
+
+    }
+  }
+
+  .mainActionSection {
+    padding: 0 50px;
+    @include flex(flex-start);
+    a,button {
+      @include btn();
+      width: fit-content;
+      padding: 20px 30px;
+      &.loadedAnnimationBTN {
+        transform: scaleY(0);
+        transform-origin: top;
+        svg {
+          opacity: 0;
+        }
+      }
+    }
+  }
+
+  .loadedAnnimation {
+    height: 0;
+    overflow-y: hidden;
+  }
+
+}

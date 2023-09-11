@@ -1,0 +1,38 @@
+@import "base/base";
+
+@import "componentsStyle/default/header";
+@import "componentsStyle/index/bodyHead";
+@import "componentsStyle/index/presentation";
+@import "componentsStyle/index/experiences";
+@import "componentsStyle/index/competences";
+
+body {
+  position: relative;
+  z-index: 1;
+}
+
+.containerCircleBackground {
+  position: absolute;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  .circle {
+    width: 65vw;
+    height: 65vw;
+    background: $c-gradient-bubble;
+    border-radius: 50%;
+    position: absolute;
+    &:first-child {
+      left: 0;
+      bottom: 0;
+      transform: translate(-10%,40%) rotate(40deg);
+    }
+    &:last-child {
+      right: 0;
+      top: 0;
+      transform: translate(10%,-40%) rotate(190deg);
+    }
+  }
+}
