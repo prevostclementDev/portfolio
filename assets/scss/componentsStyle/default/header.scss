@@ -4,6 +4,9 @@ header {
   height: 115px;
   position: relative;
   z-index: 1;
+  @media screen and (max-width: 732px) {
+    padding: 20px;
+  }
   .left {
     @include lexend(16px,400,normal);
     height: 0;

@@ -11,13 +11,16 @@
       @include lexend();
       @include flex(center,flex-start,column);
       .fname {
-        font-size: 36px;
+        font-size: clamp(20px,2.5vw,36px);
         font-weight: 400;
         text-transform: uppercase;
         transform: translateX(-50%);
+        @media screen and (max-width: 370px) {
+          transform: translateX(0%);
+        }
       }
       .nname {
-        font-size: 96px;
+        font-size: clamp(40px,7vw,96px);
         font-weight: 700;
         text-transform: uppercase;
       }
@@ -25,10 +28,13 @@
         @include flex(flex-end,flex-end,column);
         width: 100%;
         & > span {
-          font-size: 24px;
+          font-size: clamp(18px,2vw,24px);
           font-weight: 300;
           transform: translateX(50%);
           margin: 3px 0;
+          @media screen and (max-width: 500px) {
+            transform: translateX(0%);
+          }
         }
       }
 
@@ -38,10 +44,14 @@
   .mainActionSection {
     padding: 0 50px;
     @include flex(flex-start);
+    @media screen and (max-width: 732px) {
+      padding: 0 20px;
+    }
     a,button {
       @include btn();
       width: fit-content;
-      padding: 20px 30px;
+      padding: 15px 20px;
+      height: fit-content;
       &.loadedAnnimationBTN {
         transform: scaleY(0);
         transform-origin: top;

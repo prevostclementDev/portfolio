@@ -9,6 +9,8 @@
 body {
   position: relative;
   z-index: 1;
+  overflow-x: hidden;
+  width: 100vw;
 }
 
 .containerCircleBackground {
@@ -25,14 +27,64 @@ body {
     border-radius: 50%;
     position: absolute;
     &:first-child {
-      left: 0;
-      bottom: 0;
-      transform: translate(-10%,40%) rotate(40deg);
+      left: -7vw;
+      bottom: -25vw;
+      transform: rotate(40deg);
     }
     &:last-child {
-      right: 0;
-      top: 0;
-      transform: translate(10%,-40%) rotate(190deg);
+      right: -7vw;
+      top: -25vw;
+      transform: rotate(190deg);
+    }
+    @media screen and (max-width: 1400px) {
+      &:first-child {
+        left: -5vw;
+        bottom: -20vw;
+      }
+      &:last-child {
+        right: -5vw;
+        top: -20vw;
+      }
+    }
+    @media screen and (max-width: 1144px) {
+      width: 75vw;
+      height: 75vw;
+    }
+    @media screen and (max-width: 830px) {
+      &:first-child {
+        left: -5vw;
+        bottom: -10vw;
+      }
+      &:last-child {
+        right: -5vw;
+        top: -10vw;
+      }
+    }
+    @media screen and (max-width: 680px) {
+      width: 100vw;
+      height: 100vw;
+      &:first-child {
+        left: -35vw;
+        bottom: -10vw;
+      }
+      &:last-child {
+        right: -35vw;
+        top: -10vw;
+      }
+    }
+    @media screen and (max-width: 540px) {
+      width: 100vw;
+      height: 100vw;
+      &:first-child {
+        left: -10vw;
+        bottom: 50%;
+        transform: translateY(50%) rotate(40deg);
+      }
+      &:last-child {
+        right: -10vw;
+        top: 50%;
+        transform: translateY(-50%) rotate(190deg);
+      }
     }
   }
 }

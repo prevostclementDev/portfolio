@@ -32,6 +32,12 @@
   display: block;
   @include lexend($fs,$fw,$lh,$color);
   @include flex();
+  
+  @media screen and (max-width: 830px) {
+    width: fit-content;
+    height: fit-content;
+    padding: 15px 20px;
+  }
 }
 
 @mixin p($color : $c-black) {

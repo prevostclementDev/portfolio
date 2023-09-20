@@ -1,4 +1,5 @@
 <template>
+
   <div class="containerCircleBackground">
     <div class="circle"></div>
     <div class="circle"></div>
@@ -6,14 +7,10 @@
 
   <HeaderDefault></HeaderDefault>
 
-  <body>
+  <section id="containerAllContent">
+    <slot />
+  </section>
 
-    <section id="containerAllContent">
-      <slot />
-    </section>
-
-  </body>
-  
   <FooterDefault></FooterDefault>
 </template>
 

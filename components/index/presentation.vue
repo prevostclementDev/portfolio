@@ -35,7 +35,7 @@ onMounted(()=>{
       start : "top",
       end : "+=650",
       scrub : 1,
-      markers:true,
+      // markers:true,
     }
   });
 
