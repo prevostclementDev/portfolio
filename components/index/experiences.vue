@@ -61,49 +61,50 @@ import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 
 onMounted(()=>{
-  // const centerApparariationElement = document.querySelectorAll('.centerAppariation');
-  //
-  // gsap.set('#experiences .rotateOpacity', { rotate : -15,opacity : 0,yPercent:-20})
-  // gsap.set('#experiences .centerAppariation', { top : 0, yPercent : 350, opacity : 0,rotate : -15})
-  //
-  // const timelineExperience = gsap.timeline({
-  //   scrollTrigger : {
-  //     trigger : '#experiences',
-  //     pin : true,
-  //     start : "top",
-  //     end : '+=900',
-  //     scrub : 1,
-  //   }
-  // })
-  // timelineExperience.to(
-  //     '#experiences .rotateOpacity',
-  //     {
-  //       rotate : 0,
-  //       opacity : 1,
-  //       yPercent : 0,
-  //     }
-  // )
-  //
-  // let time = 0;
-  // centerApparariationElement.forEach((el,index)=>{
-  //   const timelineCenterApparition = gsap.timeline();
-  //
-  //   timelineCenterApparition.to(el, {
-  //     yPercent : 0,
-  //     opacity : 1,
-  //     rotate : 0,
-  //   })
-  //
-  //   if(centerApparariationElement.length - 1 !== index){
-  //     timelineCenterApparition.to(el,{
-  //       yPercent: -150,
-  //       opacity: 0,
-  //       rotate : 15,
-  //     })
-  //   }
-  //   time+=0.5
-  //   timelineExperience.add(timelineCenterApparition,time);
-  // })
+  const centerApparariationElement = document.querySelectorAll('.centerAppariation');
+
+  gsap.set('#experiences .rotateOpacity', { rotate : -15,opacity : 0,yPercent:-20})
+  gsap.set('#experiences .centerAppariation', { top : 0, yPercent : 350, opacity : 0,rotate : -15})
+
+  const timelineExperience = gsap.timeline({
+    scrollTrigger : {
+      trigger : '#experiences',
+      pin : true,
+      start : "top",
+      end : '+=1200',
+      scrub : 1,
+      markers:true,
+    }
+  })
+  timelineExperience.to(
+      '#experiences .rotateOpacity',
+      {
+        rotate : 0,
+        opacity : 1,
+        yPercent : 0,
+      }
+  )
+
+  let time = 0;
+  centerApparariationElement.forEach((el,index)=>{
+    const timelineCenterApparition = gsap.timeline();
+
+    timelineCenterApparition.to(el, {
+      yPercent : 0,
+      opacity : 1,
+      rotate : 0,
+    })
+
+    if(centerApparariationElement.length - 1 !== index){
+      timelineCenterApparition.to(el,{
+        yPercent: -150,
+        opacity: 0,
+        rotate : 15,
+      })
+    }
+    time+=0.5
+    timelineExperience.add(timelineCenterApparition,time);
+  })
 
 })
 
