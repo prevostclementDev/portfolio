@@ -58,18 +58,18 @@ gsap.registerPlugin(ScrollTrigger);
 
 onMounted(()=>{
 
-  const competencestimeline = gsap.timeline({
-    scrollTrigger : {
-      trigger:'#competences',
-      start : "-=200",
-      end : "+=500",
-      scrub : true
-    }
-  })
-
-  competencestimeline.to('html',{
-    background: '#1C1919',
-  })
+  // const competencestimeline = gsap.timeline({
+  //   scrollTrigger : {
+  //     trigger:'#competences',
+  //     start : "-=200",
+  //     end : "+=500",
+  //     scrub : true
+  //   }
+  // })
+  //
+  // competencestimeline.to('html',{
+  //   background: '#1C1919',
+  // })
 
 })
 
