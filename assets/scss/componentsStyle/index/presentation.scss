@@ -1,6 +1,6 @@
 #presentation {
   padding: 100px 250px;
-  max-height: 100svh;
+  max-height: 100dvh;
   @include flex(space-between);
 
   @media screen and (max-width: 1582px) {
