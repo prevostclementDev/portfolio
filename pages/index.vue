@@ -21,11 +21,6 @@ const nuxtApp = useNuxtApp();
 const loading = ref(true);
 const fullTime = 1500;
 const startTime = new Date();
-
-onMounted(() => {
-  const timelineHeader = renderTimeLineFinishLoaded();
-  timelineHeader.play();
-})
 function renderTimeLineFinishLoaded() {
   let timeline = gsap.timeline({paused:true});
 
@@ -69,13 +64,16 @@ function renderTimeLineFinishLoaded() {
 nuxtApp.hook("page:finish", () => {
   const endTime = new Date();
   const diff = endTime - startTime;
+  const timelineHeader = renderTimeLineFinishLoaded();
 
   if( diff < fullTime ) {
     setTimeout(()=>{
       loading.value = false;
+      timelineHeader.play();
     },fullTime-diff);
   } else {
     loading.value = false;
+    timelineHeader.play();
   }
 });
 

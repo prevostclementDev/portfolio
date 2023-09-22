@@ -61,27 +61,39 @@ import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 
 onMounted(()=>{
+
+  if( window.innerWidth >= 786 ) {
+    createTimeline_desktop_experiences();
+  } else {
+    createTimeline_mobile_experiences();
+  }
+
+})
+
+function createTimeline_desktop_experiences(){
   const centerApparariationElement = document.querySelectorAll('.centerAppariation');
 
-  gsap.set('#experiences .rotateOpacity', { rotate : -15,opacity : 0,yPercent:-20})
-  gsap.set('#experiences .centerAppariation', { top : 0, yPercent : 350, opacity : 0,rotate : -15})
+  gsap.set('#experiences .rotateOpacity', { rotate : -15,opacity : 0,yPercent:100,xPercent:-20})
+  gsap.set('#experiences .centerAppariation', { top : "75%", yPercent : 350, opacity : 0,rotate : -15})
 
   const timelineExperience = gsap.timeline({
     scrollTrigger : {
       trigger : '#experiences',
       pin : true,
       start : "top",
-      end : '+=1200',
+      end : '+=1400',
       scrub : 1,
-      markers:true,
+      // markers:true,
     }
   })
+
   timelineExperience.to(
       '#experiences .rotateOpacity',
       {
         rotate : 0,
         opacity : 1,
         yPercent : 0,
+        xPercent : 0,
       }
   )
 
@@ -102,10 +114,32 @@ onMounted(()=>{
         rotate : 15,
       })
     }
-    time+=0.5
     timelineExperience.add(timelineCenterApparition,time);
+    time+=0.5
   })
+  return timelineExperience;
+}
 
-})
+function createTimeline_mobile_experiences() {
+  gsap.set('#experiences .centerAppariation',{opacity : 0,rotate : -15});
+
+  const elementToScrollAnimate = document.querySelectorAll('#experiences .centerAppariation');
+  elementToScrollAnimate.forEach(el => {
+
+    gsap.to(el,
+        {
+          rotate : 0,
+          opacity : 1,
+          yPercent:0,
+          duration : 0.55,
+          scrollTrigger : {
+            trigger:el,
+            start:"-="+el.offsetHeight*1.5,
+            toggleActions: 'play none none reverse'
+          }
+        })
+
+  })
+}
 
 </script>

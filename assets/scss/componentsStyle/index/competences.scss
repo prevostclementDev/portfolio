@@ -1,92 +1,218 @@
 #competences {
-  margin-top: 80px;
-  padding: 120px;
-  h2 {
-    @include lexend(40px,600,100%,$c-black);
-  }
+  padding: 60px 250px;
+  height: 100vh;
 
-  .container-competences {
-    padding: 50px 0;
-
-    .competence {
-      padding: 20px 0;
-      position: relative;
-      margin: 50px 0;
-
-      @include flex(flex-end);
-
-      &.right {
-        @include flex(flex-start);
-        a {
-          .content {
-            .title {
-              left: auto;
-              right: 0;
-              transform: translateX(40%);
+  @media screen and (max-width: 1582px) {
+    padding: 60px 200px;
+    @media screen and (max-width: 1478px) {
+      padding: 60px 150px;
+      @media screen and (max-width: 1380px) {
+        padding: 60px 100px;
+        @media screen and (max-width: 990px) {
+          padding: 60px 20px;
+          @media screen and (max-width: 796px) {
+            padding: 60px 20px;
+            @media screen and (max-width: 786px) {
+              height: fit-content;
+              padding-top: 50px;
             }
-            p {
-              left: auto;
-              right: 0;
-            }
-          }
-        }
-      }
-
-      a {
-        display: block;
-        width: 90%;
-        height: 500px;
-        position: relative;
-
-        .background {
-          position: relative;
-          height: 100%;
-          img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            position: relative;
-            z-index: 0;
-          }
-
-          .filterBackground {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            background: $c-gradient-image;
-          }
-
-        }
-
-        .content {
-          position: absolute;
-          z-index: 2;
-          width: 100%;
-          height: 100%;
-          top: 0;
-          left: 0;
-          .title {
-            @include btn($c-black,$c-white,22px,900);
-            text-transform: uppercase;
-            height: fit-content;
-            width: fit-content;
-            padding: 25px;
-            position: absolute;
-            left: 0;
-            bottom: 20%;
-            transform: translateX(-40%);
-          }
-          p {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            transform: translateY(110%);
-            @include lexend(16px,300,normal,rgba(239,235,235,0.6))
           }
         }
       }
     }
+  }
+
+  h2 {
+    @include lexend(40px,600,100%,$c-white);
+    @media screen and (max-width: 786px) {
+      margin-bottom: 50px;
+    }
+  }
+
+  .container-competences {
+    //padding: 50px 0;
+    position: relative;
+    height: 100%;
+
+    @media screen and (max-width: 500px) {
+      margin-top: 70px;
+    }
+
+    li {
+
+      //margin: 70px 0;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+
+      @media screen and (max-width: 786px) {
+
+        position: relative;
+        top: initial;
+        left: initial;
+        margin: 60px 0;
+        transform: translateY(0%);
+
+      }
+
+      &.left {
+
+        a {
+
+          flex-direction: row-reverse;
+
+          .contentLeftPart {
+
+            @include flex(flex-start,flex-start,column);
+            text-align: left;
+
+            h3 {
+
+              transform: translateX(-20%);
+
+            }
+
+            p {
+
+              padding: 20px 0 0 50px;
+
+            }
+
+          }
+
+        }
+
+      }
+
+      a {
+
+        text-decoration: none;
+        color: $c-white;
+        @include flex(space-between,flex-start);
+        
+        @media screen and (max-width: 786px) {
+          flex-direction: column-reverse!important;
+        }
+
+        .contentLeftPart {
+
+          width: 65%;
+          text-align: right;
+
+          @include flex(flex-start,flex-end,column);
+
+          @media screen and (max-width: 990px) {
+
+            width: 50%;
+
+            @media screen and (max-width: 786px) {
+
+              width: 100%!important;
+              align-items: center!important;
+              justify-content: center!important;
+              text-align: left!important;
+
+            }
+
+          }
+
+          h3 {
+
+            margin: 30px 0;
+            @include btn($c-white,$c-black,26px,600);
+            width: fit-content;
+            height: fit-content;
+            padding: 20px;
+            transform: translateX(20%);
+            z-index: 3;
+            text-transform: uppercase;
+
+            @media screen and (max-width: 990px) {
+
+              font-size: 22px;
+
+              @media screen and (max-width: 786px) {
+
+                margin: 0;
+                transform: translateY(-50%)!important;
+
+              }
+
+            }
+
+          }
+
+          p {
+
+            padding: 20px 50px 0 0;
+            overflow: hidden;
+            @include lexend(clamp(16px,1.4vw,20px),300,normal,$c-white);
+
+            span {
+              display: inline-block;
+            }
+
+            @media screen and (max-width: 990px) {
+
+              padding: 5px 20px!important;
+
+              @media screen and (max-width: 786px) {
+
+                padding: 0!important;
+
+              }
+
+            }
+
+          }
+
+        }
+
+        .imgRightPart {
+
+          width: 35%;
+          height: 500px;
+          position: relative;
+
+          @media screen and (max-width: 990px) {
+
+            width: 50%;
+
+            @media screen and (max-width: 786px) {
+
+              width: 100%!important;
+              height: 40vh;
+
+            }
+
+          }
+          
+          .filterImage {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            background: linear-gradient(180deg, rgba(28, 25, 25, 0.45) 0.29%, rgba(28, 25, 25, 0.03) 99.98%);
+            width: 100%;
+            height: 100%;
+          }
+
+          img {
+            position: relative;
+            z-index: 0;
+            width: 100%;
+            height: 100%;
+            object-position: center;
+            object-fit: cover;
+
+          }
+
+        }
+
+      }
+
+    }
+
   }
 }

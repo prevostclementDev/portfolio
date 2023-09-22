@@ -26,28 +26,59 @@ gsap.registerPlugin(ScrollTrigger);
 
 onMounted(()=>{
 
-  gsap.set('#presentation .rotateOpacity',{rotate : 15,opacity : 0,yPercent:20});
+  if( window.innerWidth >= 786 ) {
+    createTimeline_desktop_presentation();
+  } else {
+    createTimeline_mobile_presentation();
+  }
+
+})
+
+function createTimeline_desktop_presentation() {
+  gsap.set('#presentation .rotateOpacity', {rotate: 15, opacity: 0, yPercent: 100, xPercent: 20});
 
   let scrollOnPresentation = gsap.timeline({
     scrollTrigger: {
-      trigger : '#presentation',
-      pin : true,
-      start : "top",
-      end : "+=650",
-      scrub : 1,
+      trigger: '#presentation',
+      pin: true,
+      start: "top",
+      end: "+=1300",
+      scrub: 1,
       // markers:true,
     }
   });
 
   scrollOnPresentation.to('#presentation .rotateOpacity', {
-        rotate : 0,
-        opacity : 1,
-        yPercent : 0,
-        stagger : 0.5
-      });
+    rotate: 0,
+    opacity: 1,
+    yPercent: 0,
+    stagger: 0.5,
+    xPercent: 0,
+  });
+  return scrollOnPresentation;
+}
 
-})
+function createTimeline_mobile_presentation() {
+  gsap.set('#presentation .rotateOpacity',{rotate : 15,opacity : 0,yPercent:100,xPercent:20});
 
+  const elementToScrollAnimate = document.querySelectorAll('#presentation .rotateOpacity');
+  elementToScrollAnimate.forEach(el => {
+
+    gsap.to(el,
+        {
+          rotate : 0,
+          opacity : 1,
+          yPercent:0,
+          xPercent:0,
+          duration : 0.25,
+          scrollTrigger : {
+            trigger:el,
+            toggleActions: 'play none none reverse'
+          }
+        })
+
+  })
+}
 
 // #########
 // IMG HOVER
