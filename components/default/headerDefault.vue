@@ -1,13 +1,13 @@
 <template>
   <header>
-      <section class="left">
+      <section class="left parallaxHead" parallax="0.3">
         <p>PORTFOLIO</p>
       </section>
       <section class="center">
         <p class="title"></p>
       </section>
-      <section class="right">
-        <button id="navigationOpen">Menu</button>
+      <section class="right parallaxHead" parallax="0.3">
+        <button id="navigationOpen" class="onLink">Menu</button>
       </section>
   </header>
 </template>

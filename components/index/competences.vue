@@ -4,7 +4,7 @@
     <h2 class="rotateOpacity">Mes compétences</h2>
     <ul class="container-competences">
 
-      <li class="competence" bg="#1C1919">
+      <li class="competence onLinkSeeProject" bg="#1C1919" step-label="1">
         <a class="container" href="">
           <div class="contentLeftPart">
             <h3><span>Développement web</span></h3>
@@ -22,7 +22,7 @@
         </a>
       </li>
 
-      <li class="competence left" bg="#282525">
+      <li class="competence left onLinkSeeProject" bg="#282525" step-label="2">
         <a class="container" href="">
           <div class="contentLeftPart">
             <h3><span>Photographie</span></h3>
@@ -35,7 +35,7 @@
         </a>
       </li>
 
-      <li class="competence last" bg="#100E0EFF">
+      <li class="competence last onLinkSeeProject" bg="#100E0EFF" step-label="3">
         <a class="container" href="">
           <div class="contentLeftPart">
             <h3><span>Web design</span></h3>
@@ -100,6 +100,7 @@ function createTimeline_desktop_competence () {
   timelineCompetenceGlobal.to('#competences .rotateOpacity', {rotate : 0, opacity : 1, yPercent : 0, stagger : 0.5, xPercent : 0,});
 
   const competences = document.querySelectorAll('#competences .competence');
+
   competences.forEach((comp,index) => {
 
     const image = comp.querySelectorAll('.imgRightPart img, .imgRightPart .filterImage');

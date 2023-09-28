@@ -18,11 +18,19 @@
         @media screen and (max-width: 370px) {
           transform: translateX(0%);
         }
+        span {
+          display: inline-block;
+          transform: translateY(-100%);
+        }
       }
       .nname {
         font-size: clamp(40px,7vw,96px);
         font-weight: 700;
         text-transform: uppercase;
+        span {
+          display: inline-block;
+          transform: translateY(-100%);
+        }
       }
       .jobs {
         @include flex(flex-end,flex-end,column);
@@ -34,6 +42,10 @@
           margin: 3px 0;
           @media screen and (max-width: 500px) {
             transform: translateX(0%);
+          }
+          span {
+            display: inline-block;
+            transform: translateY(-100%);
           }
         }
       }
@@ -63,7 +75,6 @@
   }
 
   .loadedAnnimation {
-    height: 0;
     overflow-y: hidden;
   }
 

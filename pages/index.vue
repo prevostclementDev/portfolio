@@ -35,10 +35,10 @@ function renderTimeLineFinishLoaded() {
       'firstTime'
   );
 
-  timeline.to('#bodyHead span.loadedAnnimation',{
+  timeline.to('#bodyHead span.loadedAnnimation span',{
         ease: "slow(0.7, 0.7, false)",
         duration : 0.5,
-        height : "auto",
+        y : 0,
         stagger:0.2
       },
       'firstTime'

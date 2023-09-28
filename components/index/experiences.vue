@@ -121,7 +121,7 @@ function createTimeline_desktop_experiences(){
 }
 
 function createTimeline_mobile_experiences() {
-  gsap.set('#experiences .centerAppariation',{opacity : 0,rotate : -15});
+  gsap.set('#experiences .centerAppariation',{opacity : 0,rotate : -15,xPercent:-20,yPercent:-5});
 
   const elementToScrollAnimate = document.querySelectorAll('#experiences .centerAppariation');
   elementToScrollAnimate.forEach(el => {
@@ -131,6 +131,7 @@ function createTimeline_mobile_experiences() {
           rotate : 0,
           opacity : 1,
           yPercent:0,
+          xPercent : 0,
           duration : 0.55,
           scrollTrigger : {
             trigger:el,

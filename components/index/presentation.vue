@@ -1,7 +1,7 @@
 <template>
   <section id="presentation">
     <section class="img-profil rotateOpacity">
-      <img :src="backgroundProfilImg" @mouseover="onhover" @mouseleave="onleave" alt="">
+      <img src="/imgs/profil-colored.png" :style="filterImgRef" @mouseover="onhover" @mouseleave="onleave" alt="">
     </section>
     <section class="text-profil">
       <p>
@@ -83,12 +83,12 @@ function createTimeline_mobile_presentation() {
 // #########
 // IMG HOVER
 // #########
-const backgroundProfilImg = ref('/imgs/profil-w&b.png');
+const filterImgRef = ref('filter:grayscale(100%);')
 const onhover = () => {
-  backgroundProfilImg.value = '/imgs/profil-colored.png';
+  filterImgRef.value = ''
 }
 const onleave = () => {
-  backgroundProfilImg.value = '/imgs/profil-w&b.png'
+  filterImgRef.value = 'filter:grayscale(100%);'
 }
 
 </script>
