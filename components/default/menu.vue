@@ -65,23 +65,27 @@
     const tmenu = menuTimeline();
     const openMenu = document.querySelector('#navigationOpen');
     const closeMenu = document.querySelector('#navigationClose');
+    const body = document.querySelector('body');
 
     const LinkCloseMenu = document.querySelectorAll('.linkCloseNav');
 
     openMenu.onclick = () => {
       tmenu.timeScale( 1 );
       tmenu.play();
+      body.style.overflowY = 'hidden';
     }
 
     closeMenu.onclick = () => {
       tmenu.timeScale( 1.85 );
       tmenu.reverse();
+      body.style.overflowY = 'auto';
     }
 
     LinkCloseMenu.forEach(el => {
       el.onclick = () => {
         tmenu.timeScale( 2 );
         tmenu.reverse();
+        body.style.overflowY = 'auto';
       }
     })
 

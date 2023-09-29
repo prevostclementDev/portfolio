@@ -162,7 +162,7 @@ function createTimeline_mobile_competence() {
           opacity : 1,
           yPercent:0,
           xPercent:0,
-          duration : 0.25,
+          duration : 0.45,
           scrollTrigger : {
             trigger:el,
             start : '-='+el.offsetHeight/2,
