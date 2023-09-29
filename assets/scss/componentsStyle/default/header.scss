@@ -17,6 +17,8 @@ header {
     overflow: hidden;
     button {
       @include btn();
+      position: sticky;
+      top: 50px;
     }
   }
 }

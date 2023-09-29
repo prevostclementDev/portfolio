@@ -6,7 +6,7 @@
       <section class="center">
         <p class="title"></p>
       </section>
-      <section class="right parallaxHead" parallax="0.3">
+      <section class="right">
         <button id="navigationOpen" class="onLink">Menu</button>
       </section>
   </header>

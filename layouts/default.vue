@@ -1,5 +1,7 @@
 <template>
 
+  <defaultMenu></defaultMenu>
+
   <div class="containerCircleBackground parallaxHead" parallax="0.2">
     <div class="circle"></div>
     <div class="circle parallaxHead"></div>

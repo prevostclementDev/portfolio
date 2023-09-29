@@ -1,0 +1,201 @@
+#menu {
+
+  z-index: 999999999999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: $c-white;
+  overflow: scroll;
+  opacity: 0;
+
+  display: none;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 2.5fr 100px;
+  grid-template-areas: "baselink" "globalLink" "socialmedia";
+
+  @media screen and (max-width: 590px) {
+    grid-template-rows: 10vh 80vh 10vh;
+  }
+
+  .base-link {
+    grid-area: baselink;
+    @include flex(space-between,flex-start);
+
+    .title {
+      width: 45%;
+      @include lexend(clamp(60px,7vw,128px),400,normal,rgba(28, 25, 25, 0.03));
+      height: 100%;
+      @include flex(flex-start,flex-end);
+      padding: 0 0px 20px 40px;
+      user-select: none;
+      transform: translateY(-50%);
+      opacity: 0;
+      @media screen and (max-width: 590px) {
+        display: none;
+      }
+    }
+
+    .container-link {
+      width: 55%;
+
+      display: flex;
+      justify-content: flex-end;
+
+      @media screen and (max-width: 590px) {
+        width: 100%;
+      }
+
+      a,button {
+
+        @include btn($c-black,$c-white,clamp(16px,1vw,18px),500);
+        width: calc(100% / 3);
+        height: 80px;
+        position: relative;
+
+        transform: translateY(-100%);
+
+        @media screen and (max-width: 590px) {
+          width: calc(100% / 3.5);
+          @media screen and (max-width: 400px) {
+            width: calc(100% / 3);
+            @media screen and (max-width: 341px) {
+              padding: 15px 10px;
+            }
+          }
+        }
+
+        &::after {
+
+          content: "";
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          height: 50%;
+          width: 1px;
+          background: $c-white;
+
+        }
+
+        &:last-child {
+          &::after {
+            display: none;
+          }
+        }
+
+      }
+
+    }
+
+  }
+
+  .global-link-container {
+    grid-area: globalLink;
+    @include flex(flex-end);
+
+    ul {
+      @include flex(space-between,flex-start,column);
+      height : 100%;
+      width: 75%;
+
+      @media screen and (max-width: 590px) {
+        height: 80%;
+        width: 90%;
+        //@media screen and  (max-width: 351px) {
+        //  width: 100%;
+        //}
+      }
+
+      li {
+
+        width: 100%;
+        height: calc(100% / 3);
+        @include flex(flex-start,center);
+        position: relative;
+
+        .line {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background: $c-black;
+          transform-origin: left;
+          transform: scaleX(0);
+        }
+
+        a {
+          display: block;
+          width: 100%;
+          height: 100%;
+          @include flex(flex-start,center);
+          @include lexend(clamp(30px,3.7vw,58px),500,normal);
+          text-decoration: none;
+          padding: 10px 10px 10px 50px;
+
+          @media screen and (max-width: 590px) {
+            padding: 10px 10px 10px 30px;
+            @media screen and (max-width: 385px) {
+              padding: 10px;
+            }
+          }
+
+          & > span {
+            color: $c-white;
+            mix-blend-mode: difference;
+            display: inline-block;
+            overflow: hidden;
+            span {
+              display: inline-block;
+              transform: translateY(-100%);
+            }
+          }
+
+          &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: $c-black;
+            transform-origin: left;
+            transform: scaleX(0);
+            transition: all ease-in-out 0.45s;
+          }
+
+          &:hover {
+
+            &::before {
+
+              transform: scaleX(1);
+
+            }
+
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+  .social-media-container {
+    grid-area: socialmedia;
+    ul {
+      @include flex(flex-start);
+      height: 100%;
+      padding: 0 50px;
+      li {
+        margin: 0 8px;
+        opacity: 0;
+        transform: translateY(-50%);
+      }
+    }
+  }
+
+}

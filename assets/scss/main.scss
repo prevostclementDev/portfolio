@@ -2,10 +2,33 @@
 
 @import "componentsStyle/default/header";
 @import "componentsStyle/default/footer";
+@import "componentsStyle/default/menu";
 @import "componentsStyle/index/bodyHead";
 @import "componentsStyle/index/presentation";
 @import "componentsStyle/index/experiences";
 @import "componentsStyle/index/competences";
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: none;
+  scrollbar-color: #ffffff #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 0px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #ffffff;
+  border-radius: 0px;
+  border: 0px none #ffffff;
+}
 
 body {
   position: relative;
@@ -14,10 +37,16 @@ body {
   width: 100vw;
   background: $c-white;
   cursor: none;
+  @media screen and (max-width: 1024px) {
+    cursor: initial!important;
+  }
 }
 
 * {
   cursor: none!important;
+  @media screen and (max-width: 1024px) {
+    cursor: initial!important;
+  }
 }
 
 .containerCircleBackground {
