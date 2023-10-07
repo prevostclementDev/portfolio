@@ -65,7 +65,6 @@ onMounted(()=>{
         start: "top",
         end: "+=1300",
         scrub: 1,
-        markers:true,
       }
     });
 
@@ -81,7 +80,8 @@ onMounted(()=>{
 
 })
 
-onUnmounted( () => {
+onBeforeUnmount( () => {
+  gsap.killTweensOf('#presentation .rotateOpacity');
   mm && mm.revert();
 } )
 

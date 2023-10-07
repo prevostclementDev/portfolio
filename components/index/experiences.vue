@@ -91,7 +91,7 @@ onMounted(()=>{
   })
 
   mm.add('(min-width:786px)', () => {
-    const centerApparariationElement = gsap.utils.toArray('.centerAppariation');
+    const centerApparariationElement = gsap.utils.toArray('#experiences .centerAppariation');
 
     gsap.set('#experiences .rotateOpacity', { rotate : -15,opacity : 0,yPercent:100,xPercent:-20})
     gsap.set('#experiences .centerAppariation', { top : "75%", yPercent : 350, opacity : 0,rotate : -15})
@@ -103,7 +103,7 @@ onMounted(()=>{
         start : "top",
         end : '+=1400',
         scrub : 1,
-        // markers:true,
+        markers:true,
       }
     })
 
@@ -142,6 +142,8 @@ onMounted(()=>{
 })
 
 onUnmounted(() => {
+  gsap.killTweensOf('#experiences .rotateOpacity');
+  gsap.killTweensOf('#experiences .centerAppariation');
   mm && mm.revert();
 })
 
