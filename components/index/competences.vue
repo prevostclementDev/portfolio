@@ -35,7 +35,7 @@
         </a>
       </li>
 
-      <li class="competence last onLinkSeeProject" bg="#100E0EFF" step-label="3">
+      <li class="competence last onLinkSeeProject" bg="#1C1919" step-label="3">
         <a class="container" href="">
           <div class="contentLeftPart">
             <h3><span>Web design</span></h3>
@@ -57,124 +57,124 @@
 <script setup>
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
+
+const mm = gsap.matchMedia();
 
 onMounted(()=>{
 
-  // #######################
-  // BACKGROUND COLOR CHANGE
-  // #######################
-  const competencestimeline = gsap.timeline({
-    scrollTrigger : {
-      trigger:'#competences',
-      start : "-=200",
-      end : "top",
-      scrub : 1,
-    }
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.refresh()
+
+  mm.add('(max-width : 785px)', () => {
+
+    gsap.set('#competences .competence',{opacity:0,rotate:10,yPercent:-20,xPercent:-20});
+
+    const elementToScrollAnimate = gsap.utils.toArray('#competences .competence');
+    elementToScrollAnimate.forEach(el => {
+
+      gsap.to(el,
+          {
+            rotate : 0,
+            opacity : 1,
+            yPercent:0,
+            xPercent:0,
+            duration : 0.45,
+            scrollTrigger : {
+              trigger:el,
+              start : '-='+el.offsetHeight/2,
+              toggleActions: 'play none none reverse'
+            }
+          })
+
+    })
+
   })
 
-  competencestimeline.to('body',{background: '#1C1919'})
+  mm.add('(min-width:786px)', () => {
 
-  if( window.innerWidth >= 786 ) {
-    createTimeline_desktop_competence();
-  } else {
-    createTimeline_mobile_competence();
-  }
+
+    gsap.set('#competences .rotateOpacity',{rotate : -15,opacity : 0,yPercent:100,xPercent:-20});
+
+    const timelineCompetenceGlobal = gsap.timeline({
+      scrollTrigger : {
+        trigger:'#competences',
+        start : "top",
+        end : "+=5000",
+        scrub : 1,
+        pin: true
+      }
+    })
+
+    timelineCompetenceGlobal.to('#competences .rotateOpacity', {rotate : 0, opacity : 1, yPercent : 0, stagger : 0.5, xPercent : 0,});
+
+    const competences = gsap.utils.toArray('#competences .competence');
+
+    competences.forEach((comp,index) => {
+
+      const image = comp.querySelectorAll('.imgRightPart img, .imgRightPart .filterImage');
+      const h3 = comp.querySelector('.contentLeftPart h3');
+      const h3Span = h3.querySelector('span');
+      const p = comp.querySelector('.contentLeftPart p');
+      const bgColor = comp.getAttribute('bg');
+
+      let origin = 'right';
+      let imageX = 120;
+      let textX = 150;
+      let rotate = 15;
+
+      if(comp.classList.contains('left')) {
+        origin = "left";
+        imageX = -120;
+        textX = -150;
+        rotate = -15;
+      }
+
+      gsap.set(comp,{yPercent:100,opacity:0,rotate:rotate});
+      gsap.set(image,{xPercent:imageX,opacity:0,transformOrigin:origin,rotate:rotate});
+      gsap.set(h3,{scaleX:0,transformOrigin:origin});
+      gsap.set(h3Span,{opacity:0});
+
+      const timeLineOnComp = gsap.timeline();
+
+      timeLineOnComp
+          .to('body',{background : bgColor,duration:0.2},0)
+          .to(comp,{rotate : 0,yPercent:-50,opacity:1},0)
+          .to(image,{rotate : 0,xPercent:0,opacity:1},0.3)
+          .to(h3,{scaleX:1},0.5)
+          .to(h3Span,{opacity:1})
+
+      if(competences.length - 1 !== index){
+        timeLineOnComp.to(comp,{yPercent:-100,opacity:0})
+      }
+
+      timelineCompetenceGlobal.add(timeLineOnComp);
+
+    })
+
+    timelineCompetenceGlobal.to('#competences .rotateOpacity',{rotate : 15,opacity : 0,yPercent:-100,xPercent:-20});
+
+    return timelineCompetenceGlobal;
+
+
+  })
+
+  mm.add('(min-width:1px)', () => {
+    const competencestimeline = gsap.timeline({
+      scrollTrigger : {
+        trigger:'#competences',
+        start : "-=200",
+        end : "top",
+        scrub : 1,
+      }
+    })
+
+    competencestimeline.to('body',{background: '#1C1919'})
+  })
 
 })
 
-function createTimeline_desktop_competence () {
-
-  gsap.set('#competences .rotateOpacity',{rotate : -15,opacity : 0,yPercent:100,xPercent:-20});
-
-  const timelineCompetenceGlobal = gsap.timeline({
-    scrollTrigger : {
-      trigger:'#competences',
-      start : "top",
-      end : "+=5000",
-      scrub : 1,
-      pin: true
-    }
-  })
-
-  timelineCompetenceGlobal.to('#competences .rotateOpacity', {rotate : 0, opacity : 1, yPercent : 0, stagger : 0.5, xPercent : 0,});
-
-  const competences = document.querySelectorAll('#competences .competence');
-
-  competences.forEach((comp,index) => {
-
-    const image = comp.querySelectorAll('.imgRightPart img, .imgRightPart .filterImage');
-    const h3 = comp.querySelector('.contentLeftPart h3');
-    const h3Span = h3.querySelector('span');
-    const p = comp.querySelector('.contentLeftPart p');
-    const bgColor = comp.getAttribute('bg');
-
-    let origin = 'right';
-    let imageX = 120;
-    let textX = 150;
-    let rotate = 15;
-
-    if(comp.classList.contains('left')) {
-      origin = "left";
-      imageX = -120;
-      textX = -150;
-      rotate = -15;
-    }
-
-    gsap.set(comp,{yPercent:100,opacity:0,rotate:rotate});
-    gsap.set(image,{xPercent:imageX,opacity:0,transformOrigin:origin,rotate:rotate});
-    gsap.set(h3,{scaleX:0,transformOrigin:origin});
-    gsap.set(h3Span,{opacity:0});
-
-    const timeLineOnComp = gsap.timeline();
-
-    timeLineOnComp
-        .to('body',{background : bgColor,duration:0.2},0)
-        .to(comp,{rotate : 0,yPercent:-50,opacity:1},0)
-        .to(image,{rotate : 0,xPercent:0,opacity:1},0.3)
-        .to(h3,{scaleX:1},0.5)
-        .to(h3Span,{opacity:1})
-
-    if(competences.length - 1 !== index){
-      timeLineOnComp.to(comp,{yPercent:-100,opacity:0})
-    }
-
-    timelineCompetenceGlobal.add(timeLineOnComp);
-
-  })
-
-  timelineCompetenceGlobal.to('body',{background : '#1C1919'});
-  timelineCompetenceGlobal.to('#competences .rotateOpacity',{rotate : 15,opacity : 0,yPercent:-100,xPercent:-20});
-
-  return timelineCompetenceGlobal;
-
-}
-
-function createTimeline_mobile_competence() {
-  gsap.set('#competences .competence',{opacity:0,rotate:10,yPercent:-20,xPercent:-20});
-
-  const elementToScrollAnimate = document.querySelectorAll('#competences .competence');
-  elementToScrollAnimate.forEach(el => {
-
-    gsap.to(el,
-        {
-          rotate : 0,
-          opacity : 1,
-          yPercent:0,
-          xPercent:0,
-          duration : 0.45,
-          scrollTrigger : {
-            trigger:el,
-            start : '-='+el.offsetHeight/2,
-            toggleActions: 'play none none reverse'
-          }
-        })
-
-  })
-}
+onUnmounted( () => {
+  mm && mm.revert();
+} )
 
 </script>
-
-<style scoped>
-
-</style>

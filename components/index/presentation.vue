@@ -22,63 +22,68 @@
 <script setup>
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
+
+const mm = gsap.matchMedia();
 
 onMounted(()=>{
 
-  if( window.innerWidth >= 786 ) {
-    createTimeline_desktop_presentation();
-  } else {
-    createTimeline_mobile_presentation();
-  }
+  gsap.registerPlugin(ScrollTrigger)
+  ScrollTrigger.refresh()
+
+  mm.add('(max-width : 785px)', () => {
+
+    gsap.set('#presentation .rotateOpacity',{rotate : 15,opacity : 0,yPercent:100,xPercent:20});
+
+    const elementToScrollAnimate = gsap.utils.toArray('#presentation .rotateOpacity');
+    elementToScrollAnimate.forEach((el,i) => {
+
+      gsap.to(el,
+          {
+            rotate : 0,
+            opacity : 1,
+            yPercent:0,
+            xPercent:0,
+            duration : 0.25,
+            scrollTrigger : {
+              trigger:el,
+              toggleActions: 'play none none reverse'
+            }
+          })
+
+    })
+
+  })
+
+  mm.add('(min-width:786px)', () => {
+
+    gsap.set('#presentation .rotateOpacity',{rotate : 15,opacity : 0,yPercent:100,xPercent:20});
+
+    let scrollOnPresentation = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#presentation',
+        pin: true,
+        start: "top",
+        end: "+=1300",
+        scrub: 1,
+        markers:true,
+      }
+    });
+
+    scrollOnPresentation.to('#presentation .rotateOpacity', {
+      rotate: 0,
+      opacity: 1,
+      yPercent: 0,
+      stagger: 0.2,
+      xPercent: 0,
+    });
+
+  })
 
 })
 
-function createTimeline_desktop_presentation() {
-  gsap.set('#presentation .rotateOpacity', {rotate: 15, opacity: 0, yPercent: 100, xPercent: 20});
-
-  let scrollOnPresentation = gsap.timeline({
-    scrollTrigger: {
-      trigger: '#presentation',
-      pin: true,
-      start: "top",
-      end: "+=1300",
-      scrub: 1,
-      // markers:true,
-    }
-  });
-
-  scrollOnPresentation.to('#presentation .rotateOpacity', {
-    rotate: 0,
-    opacity: 1,
-    yPercent: 0,
-    stagger: 0.5,
-    xPercent: 0,
-  });
-  return scrollOnPresentation;
-}
-
-function createTimeline_mobile_presentation() {
-  gsap.set('#presentation .rotateOpacity',{rotate : 15,opacity : 0,yPercent:100,xPercent:20});
-
-  const elementToScrollAnimate = document.querySelectorAll('#presentation .rotateOpacity');
-  elementToScrollAnimate.forEach(el => {
-
-    gsap.to(el,
-        {
-          rotate : 0,
-          opacity : 1,
-          yPercent:0,
-          xPercent:0,
-          duration : 0.25,
-          scrollTrigger : {
-            trigger:el,
-            toggleActions: 'play none none reverse'
-          }
-        })
-
-  })
-}
+onUnmounted( () => {
+  mm && mm.revert();
+} )
 
 // #########
 // IMG HOVER

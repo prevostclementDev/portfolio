@@ -9,8 +9,8 @@
         <div class="container-link">
 
           <nuxt-link to="/" class="link onLink linkCloseNav">ACCUEIL</nuxt-link>
-          <nuxt-link to="/contact" class="link onLink">CONTACT</nuxt-link>
-          <button id="navigationClose" class="close link onLink">FERMER</button>
+          <nuxt-link to="/contact" class="link onLink linkCloseNav">CONTACT</nuxt-link>
+          <button class="close link onLink linkCloseNav">FERMER</button>
 
         </div>
 
@@ -21,15 +21,15 @@
         <ul>
 
           <li>
-            <nuxt-link to="/photographie" class="link onLink"><span><span>PHOTOGRAPHIE</span></span></nuxt-link>
+            <nuxt-link to="/photographie" class="link linkCloseNav onLink"><span><span>PHOTOGRAPHIE</span></span></nuxt-link>
             <div class="line"></div>
           </li>
           <li>
-            <nuxt-link to="/developpementweb" class="link onLink"><span><span>DEVELOPPEMENT WEB</span></span></nuxt-link>
+            <nuxt-link to="/developpementweb" class="link linkCloseNav onLink"><span><span>DEVELOPPEMENT WEB</span></span></nuxt-link>
             <div class="line"></div>
           </li>
           <li>
-            <nuxt-link to="/webdesign" class="link onLink"><span><span>WEB DESIGN</span></span></nuxt-link>
+            <nuxt-link to="/webdesign" class="link linkCloseNav onLink"><span><span>WEB DESIGN</span></span></nuxt-link>
             <div class="line"></div>
           </li>
 
@@ -61,35 +61,41 @@
 <script setup>
   import {gsap} from "gsap";
 
+  let ctx;
+
   onMounted(() => {
-    const tmenu = menuTimeline();
-    const openMenu = document.querySelector('#navigationOpen');
-    const closeMenu = document.querySelector('#navigationClose');
-    const body = document.querySelector('body');
 
-    const LinkCloseMenu = document.querySelectorAll('.linkCloseNav');
+    ctx = gsap.context( ()=> {
 
-    openMenu.onclick = () => {
-      tmenu.timeScale( 1 );
-      tmenu.play();
-      body.style.overflowY = 'hidden';
-    }
+      const tmenu = menuTimeline();
+      const openMenu = document.querySelector('#navigationOpen');
+      const body = document.querySelector('body');
 
-    closeMenu.onclick = () => {
-      tmenu.timeScale( 1.85 );
-      tmenu.reverse();
-      body.style.overflowY = 'auto';
-    }
+      const LinkCloseMenu = document.querySelectorAll('.linkCloseNav');
 
-    LinkCloseMenu.forEach(el => {
-      el.onclick = () => {
-        tmenu.timeScale( 2 );
-        tmenu.reverse();
-        body.style.overflowY = 'auto';
+      openMenu.onclick = () => {
+        tmenu.timeScale( 1 );
+        tmenu.play();
+        body.style.overflowY = 'hidden';
       }
-    })
+
+      LinkCloseMenu.forEach(el => {
+        el.onclick = () => {
+          tmenu.timeScale( 2 );
+          tmenu.reverse();
+          body.style.overflowY = 'auto';
+        }
+      })
+
+    });
 
   })
+
+  onUnmounted( () => {
+
+    ctx.revert();
+
+  } )
 
   function menuTimeline() {
 

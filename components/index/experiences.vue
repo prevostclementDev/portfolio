@@ -60,87 +60,90 @@
 import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 
+const mm = gsap.matchMedia();
+
 onMounted(()=>{
 
-  if( window.innerWidth >= 786 ) {
-    createTimeline_desktop_experiences();
-  } else {
-    createTimeline_mobile_experiences();
-  }
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.refresh()
 
-})
+  mm.add('(max-width : 785px)', () => {
+    gsap.set('#experiences .centerAppariation',{opacity : 0,rotate : -15,xPercent:-20,yPercent:-5});
 
-function createTimeline_desktop_experiences(){
-  const centerApparariationElement = document.querySelectorAll('.centerAppariation');
+    const elementToScrollAnimate = gsap.utils.toArray('#experiences .centerAppariation');
+    elementToScrollAnimate.forEach(el => {
 
-  gsap.set('#experiences .rotateOpacity', { rotate : -15,opacity : 0,yPercent:100,xPercent:-20})
-  gsap.set('#experiences .centerAppariation', { top : "75%", yPercent : 350, opacity : 0,rotate : -15})
+      gsap.to(el,
+          {
+            rotate : 0,
+            opacity : 1,
+            yPercent:0,
+            xPercent : 0,
+            duration : 0.55,
+            scrollTrigger : {
+              trigger:el,
+              start:"-="+el.offsetHeight*1.5,
+              toggleActions: 'play none none reverse'
+            }
+          })
 
-  const timelineExperience = gsap.timeline({
-    scrollTrigger : {
-      trigger : '#experiences',
-      pin : true,
-      start : "top",
-      end : '+=1400',
-      scrub : 1,
-      // markers:true,
-    }
+    })
   })
 
-  timelineExperience.to(
-      '#experiences .rotateOpacity',
-      {
-        rotate : 0,
-        opacity : 1,
-        yPercent : 0,
-        xPercent : 0,
+  mm.add('(min-width:786px)', () => {
+    const centerApparariationElement = gsap.utils.toArray('.centerAppariation');
+
+    gsap.set('#experiences .rotateOpacity', { rotate : -15,opacity : 0,yPercent:100,xPercent:-20})
+    gsap.set('#experiences .centerAppariation', { top : "75%", yPercent : 350, opacity : 0,rotate : -15})
+
+    const timelineExperience = gsap.timeline({
+      scrollTrigger : {
+        trigger : '#experiences',
+        pin : true,
+        start : "top",
+        end : '+=1400',
+        scrub : 1,
+        // markers:true,
       }
-  )
-
-  let time = 0;
-  centerApparariationElement.forEach((el,index)=>{
-    const timelineCenterApparition = gsap.timeline();
-
-    timelineCenterApparition.to(el, {
-      yPercent : 0,
-      opacity : 1,
-      rotate : 0,
     })
 
-    if(centerApparariationElement.length - 1 !== index){
-      timelineCenterApparition.to(el,{
-        yPercent: -150,
-        opacity: 0,
-        rotate : 15,
-      })
-    }
-    timelineExperience.add(timelineCenterApparition,time);
-    time+=0.5
-  })
-  return timelineExperience;
-}
-
-function createTimeline_mobile_experiences() {
-  gsap.set('#experiences .centerAppariation',{opacity : 0,rotate : -15,xPercent:-20,yPercent:-5});
-
-  const elementToScrollAnimate = document.querySelectorAll('#experiences .centerAppariation');
-  elementToScrollAnimate.forEach(el => {
-
-    gsap.to(el,
+    timelineExperience.to(
+        '#experiences .rotateOpacity',
         {
           rotate : 0,
           opacity : 1,
-          yPercent:0,
+          yPercent : 0,
           xPercent : 0,
-          duration : 0.55,
-          scrollTrigger : {
-            trigger:el,
-            start:"-="+el.offsetHeight*1.5,
-            toggleActions: 'play none none reverse'
-          }
-        })
+        }
+    )
 
+    let time = 0;
+    centerApparariationElement.forEach((el,index)=>{
+      const timelineCenterApparition = gsap.timeline();
+
+      timelineCenterApparition.to(el, {
+        yPercent : 0,
+        opacity : 1,
+        rotate : 0,
+      })
+
+      if(centerApparariationElement.length - 1 !== index){
+        timelineCenterApparition.to(el,{
+          yPercent: -150,
+          opacity: 0,
+          rotate : 15,
+        })
+      }
+      timelineExperience.add(timelineCenterApparition,time);
+      time+=0.5
+    })
   })
-}
+
+})
+
+onUnmounted(() => {
+  mm && mm.revert();
+})
+
 
 </script>

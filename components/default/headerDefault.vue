@@ -4,7 +4,7 @@
         <p>PORTFOLIO</p>
       </section>
       <section class="center">
-        <p class="title"></p>
+        <p class="title">{{title}}</p>
       </section>
       <section class="right">
         <button id="navigationOpen" class="onLink">Menu</button>
@@ -13,8 +13,7 @@
 </template>
 
 <script setup>
+const props = defineProps({
+  title: String
+})
 </script>
-
-<style scoped>
-
-</style>
