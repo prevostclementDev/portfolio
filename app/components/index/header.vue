@@ -17,7 +17,7 @@
 @import '~/assets/styles/portable.scss';
 
 header {
-  background-image: url("images/main.png");
+  background-image: url("/images/main.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
