@@ -1,0 +1,6 @@
+@mixin font($font, $weight) {
+    font-family: map.get($fontFamily, $font), sans-serif;
+    font-weight: $weight;
+    font-style: normal;
+    font-optical-sizing: auto;
+}

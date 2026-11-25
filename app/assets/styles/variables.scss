@@ -1,0 +1,61 @@
+@use "sass:map";
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300..700&family=Syne:wght@400..800&display=swap');
+
+$colors : (
+    'white' : #F2F0E8,
+    'primary' : #17251F,
+    'fadePrimary' : #627067,
+    'fadePrimaryTwo' : #BCC8BE,
+    'fadePrimaryThird' : #bcc8be80,
+    'secondary' : #D0945E,
+    'gray' : #CDD1C5
+);
+$fontSize : (
+    'h1': 36px,
+    'h2': 56px,
+    'h3': 32px,
+    'paragraph' : 20px,
+    'subtitle' : 16px,
+    'small' : 12px
+);
+
+$fontFamily : ('spaceGrotesk': 'Space Grotesk','syne': 'Syne','inter': 'Inter');
+$fontWeight : 100,200,300,400,500,600,700,800,900;
+
+@each $name, $font in $fontFamily {
+    @each $weight in $fontWeight {
+        .f-#{$name}-#{$weight} {
+            font-family: $font, sans-serif;
+            font-weight: $weight;
+            font-style: normal;
+            font-optical-sizing: auto;
+        }
+    }
+}
+
+@each $name, $size in $fontSize {
+    .fs-#{$name} { 
+        font-size: #{$size}; 
+    
+        @media screen and (max-width : 1200px) {
+            font-size: calc(#{$size} - (calc( 20 * #{$size} ) / 100  ));
+            @media screen and (max-width : 900px) {
+                font-size: calc(#{$size} - (calc( 25 * #{$size} ) / 100  ));
+            }
+        }
+
+        @if #{$name} == 'h2' {
+            @media screen and (max-width : 670px) {
+                font-size: 32px;
+
+            }
+
+        }
+
+    }
+}
+
+@each $name, $color in $colors {
+    .c-#{$name} { color : #{$color}; }
+    .bg-#{$name} { background-color : #{$color}; }
+}

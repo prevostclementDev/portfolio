@@ -1,0 +1,21 @@
+Points à gérer ultérieurement
+
+1. Vérifier les textes de la fiche Sophrologie avec Véronique et confirmer les informations factuelles.
+2. Remplacer les liens d’aperçu « Voir le site » par les URL publiques réelles des sites clients, lorsqu’elles seront disponibles.
+3. Grand image format sur projet individuel à exporter depuis figma
+
+Configuration SEO à finaliser avant la mise en ligne
+- Renseigner NUXT_PUBLIC_SITE_URL avec le domaine public du portfolio pour générer des URL canoniques et des images Open Graph absolues.
+
+Backend du formulaire de contact à mettre en place
+- URL appelée en POST : https://contact-form.clementprevost.com
+- Corps envoyé en application/x-www-form-urlencoded : name, email, phone, subject, message et website (champ honeypot).
+- Répondre avec un statut HTTP 2xx en cas de succès et un statut HTTP 400 pour les données invalides.
+- Configurer Access-Control-Allow-Origin pour autoriser le domaine du portfolio ; aucune réponse de pré-vérification OPTIONS n’est requise avec le format actuel.
+
+Endpoint PHP des avis Google à mettre en place
+- Renseigner NUXT_PUBLIC_GOOGLE_REVIEWS_ENDPOINT avec l’URL publique d’un endpoint PHP qui interroge Google Places côté serveur.
+- Garder la clé Google uniquement côté serveur et autoriser le domaine du portfolio en CORS pour les requêtes GET.
+- Répondre en JSON avec rating (nombre entre 0 et 5), userRatingCount (entier positif ou nul) et googleMapsUri (URL HTTPS vers la fiche Google).
+- Si l’API Google Places est utilisée, récupérer ces champs côté PHP et configurer le Place ID ainsi que les restrictions de clé côté serveur.
+
